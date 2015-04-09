@@ -1,0 +1,20 @@
+" Faster Scrolling
+map -b j 8j
+map -b k 8k
+map -b h 8h
+map -b l 8l
+
+" Ignore case in search unless pattern has uppercase chars
+set findcase=smart
+
+" Show pattern matches as you type
+set incfind
+
+" Focus settings, (Let gmail mess with DOM) 
+set strictfocus=google.com:laissez-faire,'chrome:*':laissez-faire,*:despotic
+
+" Allow GMail shortcuts
+set passkeys+=mail.google.com:jksacrqG#<CR>,gi,gl,gp
+
+" press - q - to open :dialog downloads
+map q :dialog downloads<CR>
