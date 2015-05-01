@@ -1,5 +1,123 @@
 :autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 
+" Automatic reloading of .vimrc
+autocmd! bufwritepost .vimrc source %
+
+" Better copy & paste
+set pastetoggle=<F2>
+set clipboard=unnamed
+
+" Make backspace behave linke normal again
+set bs=2
+
+" Rebind <Leader> key
+let mapleader = ","
+
+" Bind nohl
+" Removes highlight of your last search
+" ``<C>`` stands for ``CTRL`` and therefore ``<C-n>`` stands for ``CTRL+n``
+ noremap <C-n> :nohl<CR>
+ vnoremap <C-n> :nohl<CR>
+ inoremap <C-n> :nohl<CR>
+
+" Quicksave command
+noremap <C-Z> :update<CR>
+vnoremap <C-Z> <C-C>:update<CR>
+inoremap <C-Z> <C-O>:update<CR>
+
+" Quick quit command
+noremap <Leader>e :quit<CR>  " Quit current window
+noremap <Leader>E :qa!<CR>   " Quit all windows
+
+noremap <Leader>d "_d
+
+" bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
+" Every unnecessary keystroke that can be saved is good for your health :)
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <c-l> <c-w>l
+map <c-h> <c-w>h
+
+" easier moving between tabs
+map <Leader>n <esc>:tabprevious<CR>
+map <Leader>m <esc>:tabnext<CR>
+map <Leader>t <esc>:tabnew<CR>
+
+" map sort function to a key
+vnoremap <Leader>s :sort<CR>
+
+" easier moving of code blocks
+" Try to go into visual mode (v), thenselect several lines of code here and
+" then press ``>`` several times.
+vnoremap < <gv  " better indentation
+vnoremap > >gv  " better indentation
+
+set tw=110   " width of document (used by gd)
+
+" searching
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" Setup Pathogen to manage your plugins
+call pathogen#infect()
+
+set laststatus=2
+
+" """""""""""""""""""""""
+" Setting up syntactic check (eslint, python, ...)
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_javascript_checkers = ['eslint']
+" let g:syntastic_javascript_eslint_args = "-c /Users/tomasz/.eslintrc"
+let g:syntastic_python_checkers = []
+" syntactic end.
+
+noremap :b<CR> :ConqueTerm bash<CR>
+
+let g:jedi#goto_definitions_command = "<leader>D"
+
+" Ctrl-Space for completions. Heck Yeah!
+inoremap <expr> <C-Space> pumvisible() \|\| &omnifunc == '' ?
+            \ "\<lt>C-n>" :
+            \ "\<lt>C-x>\<lt>C-o><c-r>=pumvisible() ?" .
+            \ "\"\\<lt>c-n>\\<lt>c-p>\\<lt>c-n>\" :" .
+            \ "\" \\<lt>bs>\\<lt>C-n>\"\<CR>"
+imap <C-@> <C-Space>
+
+map <Leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
+" Better navigating through omnicomplete option list
+" See http://stackoverflow.com/questions/2170023/how-to-map-keys-for-popup-menu-in-vim
+set completeopt=longest,menuone
+function! OmniPopup(action)
+    if pumvisible()
+        if a:action == 'j'
+            return "\<C-N>"
+        elseif a:action == 'k'
+            return "\<C-P>"
+        endif
+    endif
+    return a:action
+endfunction
+
+inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
+inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
+
+
+" Python folding
+" mkdir -p ~/.vim/ftplugin
+" wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
+set nofoldenable
+
 ""set the runtime path to include Vundle and initialize
 "set rtp+=~/.vim/bundle/Vundle.vim
 "call vundle#begin()
@@ -30,6 +148,9 @@
 
 "execute pathogen#infect()
 "filetype plugin indent on
+
+" Terminal config
+let g:ConqueTerm_Color = 1
 
 :noremap j 6j <CR>
 :noremap k 6k <CR>
@@ -178,9 +299,6 @@ iabbrev wiht with
 " Standard save method. Simpler and shorter
 "map <c-s> :w<CR>
 
-" Add Omnicomplete for Python Code
-" TODO check
-au FileType python set omnifunc=pythoncomplete#Complete
 let g:SuperTabDefaultCompletionType = "context"
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
