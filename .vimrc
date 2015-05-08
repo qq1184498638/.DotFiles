@@ -25,6 +25,12 @@ noremap <C-Z> :update<CR>
 vnoremap <C-Z> <C-C>:update<CR>
 inoremap <C-Z> <C-O>:update<CR>
 
+" map <C-l> <plug>NERDComInvertComment
+" imap <C-/> <plug>NERDComInvertComment
+" vmap <C-/> <plug>NERDComInvertComment
+
+" vmap y ygv<Esc>
+
 " Quick quit command
 noremap <Leader>e :quit<CR>  " Quit current window
 noremap <Leader>E :qa!<CR>   " Quit all windows
@@ -83,6 +89,15 @@ let g:syntastic_python_pylint_args = "--rcfile /Users/tomasz/.pylintrc"
 
 :let g:syntastic_loc_list_height=5
 " syntactic end.
+
+autocmd BufNewFile,BufReadPost *.styl set filetype=stylus
+
+"folding settings
+" set foldmethod=syntax    "fold based on indent
+" set foldmethod=indent    "fold based on indent
+" set foldnestmax=10      "deepest fold is 10 levels
+" set nofoldenable        "dont fold by default
+" set foldlevel=1         "this is just what i use
 
 noremap :b<CR> :ConqueTerm bash<CR>
 
@@ -151,6 +166,7 @@ set nofoldenable
 
 "execute pathogen#infect()
 "filetype plugin indent on
+filetype plugin on
 
 " Terminal config
 let g:ConqueTerm_Color = 1

@@ -1,7 +1,7 @@
 {
     "env": {
         "browser": true,
-        "node": false,
+        "node": true,
         "amd": false
     },
 
@@ -113,7 +113,8 @@
 
         "no-use-before-define": 0,
         "strict": 0,
-        "no-console": 0
+        "no-console": 0,
+        "no-unused-vars": 0
     }
 }
 

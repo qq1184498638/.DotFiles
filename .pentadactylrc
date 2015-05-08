@@ -9,12 +9,13 @@ set findcase=smart
 
 " Show pattern matches as you type
 set incfind
+set hlfinD
 
 " Focus settings, (Let gmail mess with DOM) 
 set strictfocus=google.com:laissez-faire,'chrome:*':laissez-faire,*:despotic
 
 " Allow GMail shortcuts
-set passkeys+=mail.google.com:jksacrqG#<CR>,gi,gl,gp
+" set passkeys+=mail.google.com:jksacrqG#<CR>,gi,gl,gp
 
 " press - q - to open :dialog downloads
 map q :dialog downloads<CR>
