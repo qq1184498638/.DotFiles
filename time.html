@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+<link rel="icon"
+      type="image/ico"
+      href="file:///Users/tomasz/favicon.ico">
+    <title>This is a title</title>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  </head>
+  <body>
+    <p>The aim of this webpage is to indicate current time in page title - very usful for pentadactyl junkies ;)</p>
+  </body>
+</html>
+
+<script>
+    window.setInterval(fun, 60 * 1000); //udate tiem every minute
+    fun();
+
+    function fun(){
+        var d = new Date();
+        var h = d.getHours().toString();
+        var m = d.getMinutes().toString();
+        var s = d.getSeconds().toString();
+
+        if (h.length == 1){ h = "0" + h; }
+        if (m.length == 1){ m = "0" + m; }
+        if (s.length == 1){ s = "0" + s; }
+
+        document.title = "   \t    " + h + ":" + m; // + ":" + s; 
+    }
+
+</script>

@@ -9,7 +9,7 @@ set findcase=smart
 
 " Show pattern matches as you type
 set incfind
-set hlfinD
+set hlfind
 
 " Focus settings, (Let gmail mess with DOM) 
 set strictfocus=google.com:laissez-faire,'chrome:*':laissez-faire,*:despotic
@@ -19,3 +19,4 @@ set strictfocus=google.com:laissez-faire,'chrome:*':laissez-faire,*:despotic
 
 " press - q - to open :dialog downloads
 map q :dialog downloads<CR>
+map c :open file:///Users/tomasz/time.html<CR>
