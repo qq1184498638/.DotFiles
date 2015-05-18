@@ -20,7 +20,20 @@ alias ls='ls $LS_OPTIONS -GF1Ah'
 # git hacking
 alias gi="git add --interactive"
 alias gc="git commit"
-alias gb="git branch"
+#alias gb="git branch"
+function gb {
+    #git branch "$1";
+    if [ -z $1 ]; then
+        #echo "var is unset";
+        git branch
+    else
+        #echo "var is set to '$var'"; fi
+        git branch "$@"
+    fi
+}
+function gck {
+    git checkout "$@"
+}
 function gp {
     git push origin $(git rev-parse --abbrev-ref HEAD);
 }
@@ -40,6 +53,33 @@ alias sl="ls"
 alias cd..="cd .."
 alias ...="../.."
 alias c="clear"
+alias ..='cd ..'
+alias ...='cd ../../'
+# create parent dir on demand
+alias mkdir='mkdir -pv'
+alias diff='colordiff'
+# Make mount command output pretty and human readable format
+alias mount='mount |column -t'
+alias h='history'
+
+# set vim as a default editor
+alias vi=vim
+alias svi='sudo vi'
+alias vis='vim "+set si"'
+alias edit='vim'
+
+# Stop after sending count ECHO_REQUEST packets #
+alias ping='ping -c 5'
+
+alias ports='netstat -tulanp'
+
+alias histg="history | grep"
+alias top="htop"
+alias myip="curl http://ipecho.net/plain; echo"
+
+alias dt='date "+%F %T"'
+
+alias reload='source ~/.bash_profile'
 
 #################
 # sourcing section
@@ -61,11 +101,46 @@ export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 
 ############################
 # better grep
-function gp { grep -nrI --include="*.py" --exclude="*vendor*" --exclude="*tests*" -E "$1" . --color; }
-function gpe { grep -nrI --include="$2" --exclude="*vendor*" --exclude="*tests*" -E "$1" . --color; }
+function grp { grep -nrI --include="*.py" --exclude="*vendor*" --exclude="*tests*" -E "$1" . --color; }
+function grpe { grep -nrI --include="$2" --exclude="*vendor*" --exclude="*tests*" -E "$1" . --color; }
 
 #####################
 # better cd, cd and ls
 function cd {
     builtin cd "$@" && ls -GF1Ah;
+}
+
+######################
+## decompress anything
+
+function extract {
+ if [ -z "$1" ]; then
+    # display usage if no parameters given
+    echo "Usage: extract <path/file_name>.<zip|rar|bz2|gz|tar|tbz2|tgz|Z|7z|xz|ex|tar.bz2|tar.gz|tar.xz>"
+ else
+    if [ -f $1 ] ; then
+        # NAME=${1%.*}
+        # mkdir $NAME && cd $NAME
+        case $1 in
+          *.tar.bz2)   tar xvjf ../$1    ;;
+          *.tar.gz)    tar xvzf ../$1    ;;
+          *.tar.xz)    tar xvJf ../$1    ;;
+          *.lzma)      unlzma ../$1      ;;
+          *.bz2)       bunzip2 ../$1     ;;
+          *.rar)       unrar x -ad ../$1 ;;
+          *.gz)        gunzip ../$1      ;;
+          *.tar)       tar xvf ../$1     ;;
+          *.tbz2)      tar xvjf ../$1    ;;
+          *.tgz)       tar xvzf ../$1    ;;
+          *.zip)       unzip ../$1       ;;
+          *.Z)         uncompress ../$1  ;;
+          *.7z)        7z x ../$1        ;;
+          *.xz)        unxz ../$1        ;;
+          *.exe)       cabextract ../$1  ;;
+          *)           echo "extract: '$1' - unknown archive method" ;;
+        esac
+    else
+        echo "$1 - file does not exist"
+    fi
+fi
 }
