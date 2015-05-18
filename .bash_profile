@@ -19,10 +19,12 @@ alias ls='ls $LS_OPTIONS -GF1Ah'
 ###########################
 # git hacking
 alias gi="git add --interactive"
-alias ga="git add"
 alias gc="git commit"
 alias gb="git branch"
-alias gs="git status"
+alias gs="git status --untracked-files=no"
+function ga {
+    git add "$1" && gs;
+}
 
 if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
@@ -35,7 +37,8 @@ alias cd..="cd .."
 alias ...="../.."
 alias c="clear"
 
-
+#################
+# sourcing section
 # The next line updates PATH for the Google Cloud SDK.
 source '/Users/tomasz/google-cloud-sdk/path.bash.inc'
 
@@ -60,6 +63,5 @@ function gpe { grep -nrI --include="$2" --exclude="*vendor*" --exclude="*tests*"
 #####################
 # better cd, cd and ls
 function cd {
-    builtin cd "$@" && ls -GF1A
+    builtin cd "$@" && ls -GF1Ah;
 }
-_OPTIONS
