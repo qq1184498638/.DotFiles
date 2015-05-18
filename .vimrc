@@ -25,9 +25,6 @@ noremap <C-Z> :update<CR>
 vnoremap <C-Z> <C-C>:update<CR>
 inoremap <C-Z> <C-O>:update<CR>
 
-" map <C-l> <plug>NERDComInvertComment
-" imap <C-/> <plug>NERDComInvertComment
-" vmap <C-/> <plug>NERDComInvertComment
 
 " vmap y ygv<Esc>
 
@@ -71,6 +68,11 @@ call pathogen#infect()
 
 set laststatus=2
 
+"map xx <Plug>NERDComInvertComment
+"remap <leader><leader> <plug>NERDComInvertComment
+" imap <C-/> <plug>NERDComInvertComment
+" vmap <C-/> <plug>NERDComInvertComment
+
 " """""""""""""""""""""""
 " Setting up syntactic check (eslint, python, ...)
 set statusline+=%#warningmsg#
@@ -86,6 +88,7 @@ let g:syntastic_javascript_checkers = ['eslint']
 " let g:syntastic_javascript_eslint_args = "-c /Users/tomasz/.eslintrc"
 let g:syntastic_python_pylint_args = "--rcfile /Users/tomasz/.pylintrc"
 " let g:syntastic_python_checkers = []
+let g:syntastic_tex_checkers = []
 
 :let g:syntastic_loc_list_height=5
 " syntactic end.
@@ -171,8 +174,10 @@ filetype plugin on
 " Terminal config
 let g:ConqueTerm_Color = 1
 
-:noremap j 6j <CR>
-:noremap k 6k <CR>
+":noremap j 6j <CR>
+":noremap k 6k <CR>
+:noremap J 8j<CR>
+:noremap K 6k<CR>
 
 :set number
 :set wrap

@@ -19,4 +19,5 @@ set strictfocus=google.com:laissez-faire,'chrome:*':laissez-faire,*:despotic
 
 " press - q - to open :dialog downloads
 map q :dialog downloads<CR>
-map c :open file:///Users/tomasz/time.html<CR>
+map c :echo Date()<CR>
+map <BS> <Nop><CR>

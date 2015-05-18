@@ -21,6 +21,10 @@ alias ls='ls $LS_OPTIONS -GF1Ah'
 alias gi="git add --interactive"
 alias gc="git commit"
 alias gb="git branch"
+function gp {
+    git push origin $(git rev-parse --abbrev-ref HEAD);
+}
+alias gl="git log"
 alias gs="git status --untracked-files=no"
 function ga {
     git add "$1" && gs;
