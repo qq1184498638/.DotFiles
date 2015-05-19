@@ -21,3 +21,15 @@ set strictfocus=google.com:laissez-faire,'chrome:*':laissez-faire,*:despotic
 map q :dialog downloads<CR>
 map c :echo Date()<CR>
 map <BS> <Nop><CR>
+
+set mapleader=","
+
+" view native size of image without clicking it
+nmap <leader>z :js window.content.document.toggleImageSize();<CR>
+
+
+" learn navigation stinky bastard!!
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>

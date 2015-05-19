@@ -14,7 +14,7 @@ if [ "$TERM" != "dumb" ]; then
     eval `dircolors ~/.dir_colors`
 fi
 
-alias ls='ls $LS_OPTIONS -GF1Ah'
+alias ls='ls $LS_OPTIONS -GFAh'
 
 ###########################
 # git hacking
@@ -49,6 +49,7 @@ fi
 
 #####################
 # general useful aliases, typos etc.
+alias grep="grep --color"
 alias sl="ls"
 alias cd..="cd .."
 alias ...="../.."
@@ -80,6 +81,22 @@ alias myip="curl http://ipecho.net/plain; echo"
 alias dt='date "+%F %T"'
 
 alias reload='source ~/.bash_profile'
+alias vrc="vim ~/.vimrc"
+alias brc="vim ~/.bash_profile"
+alias prc="vim ~/.pentadactylrc"
+
+function lsg() {
+    ls -al | grep $@
+}
+
+function f() {
+    find . -iname $@
+}
+
+######################
+# current project specific
+
+alias cb="cd /Users/tomasz/projects/consumer-barometer"
 
 #################
 # sourcing section
@@ -107,7 +124,7 @@ function grpe { grep -nrI --include="$2" --exclude="*vendor*" --exclude="*tests*
 #####################
 # better cd, cd and ls
 function cd {
-    builtin cd "$@" && ls -GF1Ah;
+    builtin cd "$@" && ls -GFAh;
 }
 
 ######################

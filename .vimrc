@@ -32,6 +32,13 @@ inoremap <C-Z> <C-O>:update<CR>
 noremap <Leader>e :quit<CR>  " Quit current window
 noremap <Leader>E :qa!<CR>   " Quit all windows
 
+noremap <Leader>v :vsplit .<CR>
+noremap <Leader>h :split .<CR>
+noremap <Leader>r :Ex<CR>
+
+" your working directory will be always the same as the file you are editing
+autocmd BufEnter * silent! lcd %:p:h
+
 noremap <Leader>d "_d
 
 " bind Ctrl+<movement> keys to move around the windows, instead of using Ctrl+w + <movement>
@@ -41,10 +48,65 @@ map <c-k> <c-w>k
 map <c-l> <c-w>l
 map <c-h> <c-w>h
 
+" learn normal navigation you stinky bastard!!!!!
+" provide hjkl movements in Insert mode and Command-line mode via the <Alt> modifier key
+noremap! <A-h> <Left>
+noremap! <A-j> <Down>
+noremap! <A-k> <Up>
+noremap! <A-l> <Right>
+
+" provide hjkl movements in Command-line mode via the <Alt> modifier key
+cnoremap <A-h> <Left>
+cnoremap <A-j> <Down>
+cnoremap <A-k> <Up>
+cnoremap <A-l> <Right>
+
+" provide hjkl movements in Insert mode via the <Alt> modifier key
+"inoremap <A-h> <C-o>h<C-i>
+"inoremap <A-j> <C-o>j <C-i>
+"inoremap <A-k> <C-o>k <C-i>
+"inoremap <A-l> <C-o>l <C-i>
+
+
+
+
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
+:imapclear
+imap <Up> dd<CR>
+imap <Down> <NOP>
+imap <Left> <NOP>
+imap <Right> <NOP>
+inoremap <Up> dd<CR>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
+
+"Forget compatibility with Vi. Who cares.
+set nocompatible
+
+" searching done!
+noremap <Leader>/ :nohls<CR>
+
 " easier moving between tabs
 map <Leader>n <esc>:tabprevious<CR>
 map <Leader>m <esc>:tabnext<CR>
 map <Leader>t <esc>:tabnew<CR>
+
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
 
 " map sort function to a key
 vnoremap <Leader>s :sort<CR>
@@ -137,7 +199,7 @@ inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 " Python folding
 " mkdir -p ~/.vim/ftplugin
 " wget -O ~/.vim/ftplugin/python_editing.vim http://www.vim.org/scripts/download_script.php?src_id=5492
-set nofoldenable
+"set nofoldenable
 
 ""set the runtime path to include Vundle and initialize
 "set rtp+=~/.vim/bundle/Vundle.vim
@@ -384,4 +446,82 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
+
+""""""""""""""""""""""""
+" nice tabs numbers
+
+:set tabline=%!MyTabLine()
+
+if exists("+showtabline")
+     function! MyTabLine()
+         let s = ''
+         let t = tabpagenr()
+         let i = 1
+         while i <= tabpagenr('$')
+             let buflist = tabpagebuflist(i)
+             let winnr = tabpagewinnr(i)
+             let s .= '%' . i . 'T'
+             let s .= (i == t ? '%1*' : '%2*')
+             let s .= ' '
+             let s .= i . ')'
+             let s .= ' %*'
+             let s .= (i == t ? '%#TabLineSel#' : '%#TabLine#')
+             let file = bufname(buflist[winnr - 1])
+             let file = fnamemodify(file, ':p:t')
+             if file == ''
+                 let file = '[No Name]'
+             endif
+             let s .= file
+             let i = i + 1
+         endwhile
+         let s .= '%T%#TabLineFill#%='
+         let s .= (tabpagenr('$') > 1 ? '%999XX' : 'X')
+         return s
+     endfunction
+     set stal=2
+     set tabline=%!MyTabLine()
+endif
+
+
+
+"function! MyTabLine()
+  "let s = ''
+  "for i in range(tabpagenr('$'))
+    "" select the highlighting
+    "if i + 1 == tabpagenr()
+      "let s .= '%#TabLineSel#'
+    "else
+      "let s .= '%#TabLine#'
+    "endif
+
+    "" set the tab page number (for mouse clicks)
+    "let s .= '%' . (i + 1) . 'T'
+
+    "" the label is made by MyTabLabel()
+    "let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
+  "endfor
+
+  "" after the last tab fill with TabLineFill and reset tab page nr
+  "let s .= '%#TabLineFill#%T'
+
+  "" right-align the label to close the current tab page
+  "if tabpagenr('$') > 1
+    "let s .= '%=%#TabLine#%999Xclose'
+  "endif
+
+  "return s
+"endfunction
+
+""function MyTabLabel(n)
+  ""let buflist = tabpagebuflist(a:n)
+  ""let winnr = tabpagewinnr(a:n)
+  ""return bufname(buflist[winnr - 1])
+""endfunction
+
+"function! MyTabLabel(n)
+      "let buflist = tabpagebuflist(a:n)
+      "let winnr = tabpagewinnr(a:n)
+      "return buflist[winnr - 1] . ') ' . bufname(buflist[winnr - 1])
+"endfunction
+
 
