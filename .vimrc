@@ -18,12 +18,10 @@ let mapleader = ","
 " ``<C>`` stands for ``CTRL`` and therefore ``<C-n>`` stands for ``CTRL+n``
  noremap <C-n> :nohl<CR>
  vnoremap <C-n> :nohl<CR>
- inoremap <C-n> :nohl<CR>
 
 " Quicksave command
 noremap <C-Z> :update<CR>
 vnoremap <C-Z> <C-C>:update<CR>
-inoremap <C-Z> <C-O>:update<CR>
 
 
 " vmap y ygv<Esc>
@@ -61,29 +59,6 @@ cnoremap <A-j> <Down>
 cnoremap <A-k> <Up>
 cnoremap <A-l> <Right>
 
-" provide hjkl movements in Insert mode via the <Alt> modifier key
-"inoremap <A-h> <C-o>h<C-i>
-"inoremap <A-j> <C-o>j <C-i>
-"inoremap <A-k> <C-o>k <C-i>
-"inoremap <A-l> <C-o>l <C-i>
-
-
-
-
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
-
-:imapclear
-imap <Up> dd<CR>
-imap <Down> <NOP>
-imap <Left> <NOP>
-imap <Right> <NOP>
-inoremap <Up> dd<CR>
-inoremap <Down> <Nop>
-inoremap <Left> <Nop>
-inoremap <Right> <Nop>
 
 "Forget compatibility with Vi. Who cares.
 set nocompatible
@@ -192,8 +167,8 @@ function! OmniPopup(action)
     return a:action
 endfunction
 
-inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
-inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
+"inoremap <silent><C-j> <C-R>=OmniPopup('j')<CR>
+"inoremap <silent><C-k> <C-R>=OmniPopup('k')<CR>
 
 
 " Python folding
@@ -483,45 +458,20 @@ if exists("+showtabline")
 endif
 
 
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
 
-"function! MyTabLine()
-  "let s = ''
-  "for i in range(tabpagenr('$'))
-    "" select the highlighting
-    "if i + 1 == tabpagenr()
-      "let s .= '%#TabLineSel#'
-    "else
-      "let s .= '%#TabLine#'
-    "endif
+:imapclear
+imap <Up> dd<CR>
+imap <Down> <NOP>
+imap <Left> <NOP>
+imap <Right> <NOP>
+inoremap <Up> dd<CR>
+inoremap <Down> <Nop>
+inoremap <Left> <Nop>
+inoremap <Right> <Nop>
 
-    "" set the tab page number (for mouse clicks)
-    "let s .= '%' . (i + 1) . 'T'
-
-    "" the label is made by MyTabLabel()
-    "let s .= ' %{MyTabLabel(' . (i + 1) . ')} '
-  "endfor
-
-  "" after the last tab fill with TabLineFill and reset tab page nr
-  "let s .= '%#TabLineFill#%T'
-
-  "" right-align the label to close the current tab page
-  "if tabpagenr('$') > 1
-    "let s .= '%=%#TabLine#%999Xclose'
-  "endif
-
-  "return s
-"endfunction
-
-""function MyTabLabel(n)
-  ""let buflist = tabpagebuflist(a:n)
-  ""let winnr = tabpagewinnr(a:n)
-  ""return bufname(buflist[winnr - 1])
-""endfunction
-
-"function! MyTabLabel(n)
-      "let buflist = tabpagebuflist(a:n)
-      "let winnr = tabpagewinnr(a:n)
-      "return buflist[winnr - 1] . ') ' . bufname(buflist[winnr - 1])
-"endfunction
-
-
+inoremap <C-Z> <C-O>:update<CR>
+inoremap <C-n> :nohl<CR>
