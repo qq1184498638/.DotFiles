@@ -119,6 +119,7 @@ export PROMPT_COMMAND="_update_ps1; $PROMPT_COMMAND"
 
 ############################
 # better grep
+function nrp { grep -nrw . -e $@ --color; }
 function grp { grep -nrI --include="*.py" --exclude="*vendor*" --exclude="*tests*" -E "$1" . --color; }
 function grpe { grep -nrI --include="$2" --exclude="*vendor*" --exclude="*tests*" -E "$1" . --color; }
 
