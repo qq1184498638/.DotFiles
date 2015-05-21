@@ -11,7 +11,7 @@ set findcase=smart
 set incfind
 set hlfind
 
-" Focus settings, (Let gmail mess with DOM) 
+" Focus settings, (Let gmail mess with DOM)
 set strictfocus=google.com:laissez-faire,'chrome:*':laissez-faire,*:despotic
 
 " Allow GMail shortcuts
@@ -35,3 +35,8 @@ noremap <Left> <Nop>
 noremap <Right> <Nop>
 
 noremap v <C-Z>
+
+set visualbell
+
+noremap m gt
+noremap p gT
