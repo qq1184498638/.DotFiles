@@ -47,6 +47,7 @@ if [ -f ~/.git-completion.bash ]; then
   . ~/.git-completion.bash
 fi
 alias gd="git difftool"
+alias pll="git pull"
 
 #####################
 # general useful aliases, typos etc.
@@ -85,6 +86,7 @@ alias reload='source ~/.bash_profile'
 alias vrc="vim ~/.vimrc"
 alias brc="vim ~/.bash_profile"
 alias prc="vim ~/.pentadactylrc"
+alias n="vim ~/.notepad"
 
 function lsg() {
     ls -al | grep $@

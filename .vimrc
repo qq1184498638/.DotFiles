@@ -1,3 +1,12 @@
+""""""""""""""""""""""""""""""""""
+" TODO SECTION
+" - use silver searcher: https://github.com/ggreer/the_silver_searcher
+" - analyze .vimrc files: https://github.com/thoughtbot/dotfiles/blob/master/vimrc
+" - Ben Orenstein
+" - koles z vim as a python ide
+" - TIDY your vimrc
+
+""""""""""""""""""""""""""""""""""
 :autocmd ColorScheme * highlight ExtraWhitespace ctermbg=darkgreen guibg=darkgreen
 
 " Automatic reloading of .vimrc
@@ -6,6 +15,11 @@ autocmd! bufwritepost .vimrc source %
 " Better copy & paste
 set pastetoggle=<F2>
 set clipboard=unnamed
+
+" Open new split panes to right and bottom, which feels more natural
+set splitbelow
+set splitright
+
 
 " Make backspace behave linke normal again
 set bs=2
@@ -20,9 +34,13 @@ let mapleader = ","
  vnoremap <C-n> :nohl<CR>
 
 " Quicksave command
-noremap <C-Z> :update<CR>
-vnoremap <C-Z> <C-C>:update<CR>
+"noremap <Leader>a :update<CR>
+"vnoremap <Leader>a :update<CR>
+"noremap <C-S> :update<CR>
+"vnoremap <C-S> <C-C>:update<CR>
 
+":noremap <M-s> :w<kEnter>  "Works in normal mode, must press Esc first"
+":inoremap <M-s> <Esc>:w<kEnter>i "Works in insert mode, saves and puts back in insert mode"
 
 " vmap y ygv<Esc>
 
@@ -33,6 +51,10 @@ noremap <Leader>E :qa!<CR>   " Quit all windows
 noremap <Leader>v :vsplit .<CR>
 noremap <Leader>h :split .<CR>
 noremap <Leader>r :Ex<CR>
+
+" Emacs-like beginning and end of line.
+"imap <c-e> <c-o>$
+"imap <c-a> <c-o>^
 
 " your working directory will be always the same as the file you are editing
 autocmd BufEnter * silent! lcd %:p:h
@@ -217,6 +239,7 @@ let g:ConqueTerm_Color = 1
 :noremap K 6k<CR>
 
 :set number
+:set relativenumber
 :set wrap
 :set linebreak
 :set nolist  " list disables linebreak
@@ -264,8 +287,8 @@ set noswapfile
 set expandtab
 
 " 1 tab == 4 spaces
-set shiftwidth=4
-set tabstop=4
+set shiftwidth=2
+set tabstop=2
 
 set wrap "Wrap lines
 
@@ -327,8 +350,17 @@ set showmode
 set showcmd
 set laststatus=2
 
+set autowrite
+
 " Show the line we're currently on
 set cursorline
+" biale nr linii poza aktualna
+highlight LineNr ctermfg=green
+
+" kodowanie
+set encoding=utf-8
+set fileencodings=utf-8,latin2,cp1250
+set termencoding=utf-8
 
 " Allows vim to handle multiple buffers at the same time
 set hidden
@@ -457,6 +489,11 @@ if exists("+showtabline")
      set tabline=%!MyTabLine()
 endif
 
+" navigation between panes in split window
+:nmap <silent> <C-h> :wincmd h<CR>
+:nmap <silent> <C-j> :wincmd j<CR>
+:nmap <silent> <C-k> :wincmd k<CR>
+:nmap <silent> <C-l> :wincmd l<CR>
 
 noremap <Up> <Nop>
 noremap <Down> <Nop>
