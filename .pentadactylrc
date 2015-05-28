@@ -4,6 +4,9 @@ map -b k 8k
 map -b h 8h
 map -b l 8l
 
+map J 2j
+map K 2k
+
 " Ignore case in search unless pattern has uppercase chars
 set findcase=smart
 

@@ -279,6 +279,7 @@ set background=dark
 set encoding=utf8
 
 " Turn backup off, since most stuff is in SVN, git et.c anyway...
+" TODO set this on and set dir for these
 set nobackup
 set nowb
 set noswapfile
@@ -380,6 +381,7 @@ set lazyredraw
 set gdefault
 
 " Persistent undo
+set undodir='~/vim_undo'
 set undofile
 set undolevels=1000 "maximum number of changes that can be undone
 set undoreload=10000 "maximum number lines to save for undo on a buffer relod
