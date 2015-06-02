@@ -60,7 +60,7 @@ export PATH="/Users/tomasz/google-cloud-sdk/bin:/usr/local/opt/coreutils/libexec
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+#export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
@@ -68,12 +68,30 @@ source $ZSH/oh-my-zsh.sh
  else
    export EDITOR='vim'
  fi
+#export EDITOR=/usr/local/bin/vim
+export EDITOR=/usr/bin/vim
+export USE_EDITOR=$EDITOR
+export VISUAL=$EDITOR
+
+# suffix aliases for quicker files editing
+alias -s xml='vim'
+alias -s js='vim'
+alias -s py='vim'
+alias -s html='vim'
+alias -s json='vim'
+alias -s report='vim'
+alias -s conf='vim'
+alias -s md='vim'
+alias -s less='vim'
+alias -s sass='vim'
+alias -s css='vim'
+alias -s scss='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+export SSH_KEY_PATH="~/.ssh/id_rsa"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -126,14 +144,19 @@ function gb {
 function gck {
     git checkout "$@"
 }
+# typo
+alias gch="gck"
 function gp {
     git push origin $(git rev-parse --abbrev-ref HEAD);
 }
+# typo
+alias pg="gp"
 alias gl="git log"
 alias gs="git status --untracked-files=no"
 function ga {
     git add "$1" && gs;
 }
+alias gsn='git status | grep "new file:"'
 
 if [ -f ~/.git-completion.zsh ]; then
   . ~/.git-completion.zsh
@@ -164,6 +187,7 @@ alias edit='vim'
 
 # Stop after sending count ECHO_REQUEST packets #
 alias ping='ping -c 5'
+alias p='ping google.pl'
 
 alias ports='netstat -tulanp'
 
@@ -193,6 +217,20 @@ function f() {
 function ksd() {
   ksdiff $@
 }
+
+alias edit="vim"
+alias vi="vim"
+alias v="vim"
+
+# if you do a 'rm *', Zsh will give you a sanity check!
+setopt RM_STAR_WAIT
+
+# allows you to type Bash style comments on your command line
+# good 'ol Bash
+setopt interactivecomments
+
+# Zsh has a spelling corrector
+setopt CORRECT
 
 ######################
 # current project specific
@@ -233,6 +271,10 @@ function cd {
 function mcd {
     mkdir $1 && cd $1;
 }
+
+function cp {
+    mkdir `dirname $2` && /bin/cp "$1" "$2";
+}
 #function mkcd() { mkdir -p "$@" && cd "$_"; }
 
 ######################
@@ -270,6 +312,6 @@ function extract {
 fi
 }
 
-PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/tomasz/eb/macosx/python2.7/:$PATH"
 export USER_NAME="Tomasz"
 ##################################################
