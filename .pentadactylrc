@@ -8,7 +8,10 @@ map J 2j
 map K 2k
 
 " Ignore case in search unless pattern has uppercase chars
-set findcase=smart
+set findcase="ignore"
+
+" set ignorecase
+" set smartcase
 
 " Show pattern matches as you type
 set incfind
@@ -25,21 +28,24 @@ map q :dialog downloads<CR>
 map c :echo Date()<CR>
 map <BS> <Nop><CR>
 
-set mapleader=","
+" set mapleader=","
 
 " view native size of image without clicking it
 nmap <leader>z :js window.content.document.toggleImageSize();<CR>
 
 
 " learn navigation stinky bastard!!
-noremap <Up> <Nop>
-noremap <Down> <Nop>
-noremap <Left> <Nop>
-noremap <Right> <Nop>
+map <Up> <Nop>
+map <Down> <Nop>
+map <Left> <Nop>
+map <Right> <Nop>
 
-noremap v <C-Z>
+map v <C-Z>
 
 set visualbell
 
-noremap m gt
-noremap p gT
+map m gt
+map p gT
+
+imap <C-n> :noh<CR>
+map <C-n> :noh<CR>

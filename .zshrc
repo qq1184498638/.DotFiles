@@ -1,6 +1,18 @@
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/tomasz/.oh-my-zsh
 
+if [[ $(uname) = 'Darwin' ]]; then
+    IS_MAC=1
+fi
+
+if [[ -x `which brew` ]]; then
+    HAS_BREW=1
+fi
+
+if [[ -x `which yum` ]]; then
+    HAS_YUM=1
+fi
+
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
@@ -86,6 +98,7 @@ alias -s less='vim'
 alias -s sass='vim'
 alias -s css='vim'
 alias -s scss='vim'
+alias -s tex='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -124,7 +137,7 @@ if [ "$TERM" != "dumb" ]; then
 fi
 
 #alias ls='ls $LS_OPTIONS -GFAh'
-alias ls='ls -GFAh'
+alias ls='ls -GFh'
 
 ###########################
 # git hacking
@@ -163,6 +176,22 @@ if [ -f ~/.git-completion.zsh ]; then
 fi
 alias gd="git difftool"
 alias pll="git pull"
+
+alias git_update="git add -u"
+function gu {
+    git_update "$@" && gs;
+}
+alias grh_="git reset HEAD"
+function grh {
+    grh_ "$@" && gs;
+}
+
+# curiosities
+# gsh shows the number of commits for the current repos for all developers
+alias gsh="git shortlog | grep -E '^[ ]+\w+' | wc -l"
+
+# gu shows a list of all developers and the number of commits they've made
+alias gun="git shortlog | grep -E '^[^ ]'"
 
 #####################
 # general useful aliases, typos etc.
@@ -204,6 +233,17 @@ alias zrc="vim ~/.zshrc"
 alias prc="vim ~/.pentadactylrc"
 alias n="vim ~/.notepad"
 
+alias df="df -h"
+alias du='du -h -c'         # Calculate total disk usage
+
+# TODO - make sure it works also recursively
+alias pycclean='find . -name "*.pyc" -exec rm {} \;'
+
+ips () {
+    # determine local IP address
+    ifconfig | grep "inet " | awk '{ print $2 }'
+}
+
 function lsg() {
     ls -al | grep $@
 }
@@ -238,6 +278,13 @@ setopt CORRECT
 alias cb="cd /Users/tomasz/projects/consumer-barometer"
 alias ra="/Users/tomasz/projects/rare"
 
+# -------------------------------------------------------------------
+# Python virtualenv
+# -------------------------------------------------------------------
+alias mkenv='mkvirtualenv'
+alias on="workon"
+alias off="deactivate"
+
 #################
 # sourcing section
 # The next line updates PATH for the Google Cloud SDK.
@@ -265,9 +312,9 @@ function grpe { grep -nrI --include="$2" --exclude="*vendor*" --exclude="*tests*
 
 #####################
 # better cd, cd and ls
-function cd {
-    builtin cd "$@" && ls -GFAh;
-}
+#function cd {
+    #builtin cd "$@" && ls -GFAh;
+#}
 function mcd {
     mkdir $1 && cd $1;
 }
@@ -315,3 +362,29 @@ fi
 PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/tomasz/eb/macosx/python2.7/:$PATH"
 export USER_NAME="Tomasz"
 ##################################################
+
+setopt no_beep # don't beep on error
+
+setopt auto_cd # If you type foo, and it isn't a command, and it is a directory in your cdpath, go there
+
+if [[ $IS_MAC -eq 1 ]]; then
+    # view man pages in Preview
+    pman() { ps=`mktemp -t manpageXXXX`.ps ; man -t $@ > "$ps" ; open "$ps" ; }
+fi
+
+
+# -------------------------------------------------------------------
+# (s)ave or (i)nsert a directory.
+# -------------------------------------------------------------------
+s() { pwd > ~/.save_dir ; }
+i() { cd "$(cat ~/.save_dir)" ; }
+
+# HISTORY
+HISTSIZE=10000
+SAVEHIST=9000
+HISTFILE=~/.zsh_history
+
+preexec() { ODIR="$(pwd)" }
+precmd() { [[ "$(pwd)" != $ODIR ]] && ls -GFh; }
+
+alias mk="mkdir -pv"

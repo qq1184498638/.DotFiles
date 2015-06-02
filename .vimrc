@@ -514,3 +514,11 @@ inoremap <Right> <Nop>
 
 inoremap <C-Z> <C-O>:update<CR>
 inoremap <C-n> :nohl<CR>
+
+" pentadactylrc file defined
+au BufNewFile,BufRead *.pentadactylrc   setf pentadactylrc
+\ 'pentadactylrc': { 'left': '" ', 'leftAlt': '" ', 'rightAlt': '" ' },
+
+" redraw window so search terms are centered
+nnoremap n nzz
+nnoremap N Nzz
