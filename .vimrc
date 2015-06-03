@@ -516,8 +516,8 @@ inoremap <C-Z> <C-O>:update<CR>
 inoremap <C-n> :nohl<CR>
 
 " pentadactylrc file defined
-au BufNewFile,BufRead *.pentadactylrc   setf pentadactylrc
-\ 'pentadactylrc': { 'left': '" ', 'leftAlt': '" ', 'rightAlt': '" ' },
+"au BufNewFile,BufRead *.pentadactylrc   setf pentadactylrc
+"\ 'pentadactylrc': { 'left': '" ', 'leftAlt': '" ', 'rightAlt': '" ' },
 
 " redraw window so search terms are centered
 nnoremap n nzz
@@ -530,8 +530,9 @@ set shell=/usr/local/bin/zsh
 
 " my univers control center ;)
 set t_ti=
-au VimLeave * :!{ clear && echo "\n\n" && sh ~/h.sh && echo "\n" && git status --untracked-files=no && echo "\n" && ls -GFh }
-"au VimLeave * :!{ sh ~/h.sh }
+"au VimLeave * :!{ clear && echo "\n\n" && sh ~/h.sh && echo "\n" && git status --untracked-files=no && echo "\n" && ls -GFh }
+au VimLeave * :!{ clear && echo "\n\n" && git status --untracked-files=no && echo "\n" && ls -GFh }
+"au VimLeave * :!{ echo !-2 && echo "\n" && echo !-2 }
 
 
 "augroup autocom
