@@ -522,3 +522,23 @@ au BufNewFile,BufRead *.pentadactylrc   setf pentadactylrc
 " redraw window so search terms are centered
 nnoremap n nzz
 nnoremap N Nzz
+
+" amount of lines above/below the cursor for scrolling, e.g. zt, zb
+set scrolloff=3
+
+set shell=/usr/local/bin/zsh
+
+" my univers control center ;)
+set t_ti=
+au VimLeave * :!{ clear && echo "\n\n" && sh ~/h.sh && echo "\n" && git status --untracked-files=no && echo "\n" && ls -GFh }
+"au VimLeave * :!{ sh ~/h.sh }
+
+
+"augroup autocom
+    ""autocmd!
+    ""executes the command on quit
+     "autocmd VimLeave *.cpp !ls
+
+    ""execute the command on write
+    ""autocmd BufWritePost,FileWritePost *.cpp !your_commad
+"augroup END

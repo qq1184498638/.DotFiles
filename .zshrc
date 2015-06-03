@@ -208,11 +208,6 @@ alias diff='colordiff'
 alias mount='mount |column -t'
 alias h='history'
 
-# set vim as a default editor
-alias vi=vim
-alias svi='sudo vi'
-alias vis='vim "+set si"'
-alias edit='vim'
 
 # Stop after sending count ECHO_REQUEST packets #
 alias ping='ping -c 5'
@@ -258,9 +253,18 @@ function ksd() {
   ksdiff $@
 }
 
+
 alias edit="vim"
 alias vi="vim"
+# set vim as a default editor
+alias svi='sudo vi'
+alias edit='vim'
+alias vi=vim
+alias vis='vim "+set si"'
 alias v="vim"
+#function v {
+    #vim "$@" && ls;
+#}
 
 # if you do a 'rm *', Zsh will give you a sanity check!
 setopt RM_STAR_WAIT
@@ -384,7 +388,25 @@ HISTSIZE=10000
 SAVEHIST=9000
 HISTFILE=~/.zsh_history
 
-preexec() { ODIR="$(pwd)" }
-precmd() { [[ "$(pwd)" != $ODIR ]] && ls -GFh; }
+#preexec() { ODIR="$(pwd)" }
+#precmd() { [[ "$(pwd)" != $ODIR ]] && ls -GFh; }
+
+#function chpwd() {
+    #ls;
+#}
+
+function my_special_chpwd_function() {
+    ls
+}
+chpwd_functions=(${chpwd_functions[@]} "my_special_chpwd_function")
+
+#function my_special_vim_function() {
+    #ls
+#}
+#vim_functions=(${vim_functions[@]} "my_special_vim_function")
 
 alias mk="mkdir -pv"
+
+HISTFILE=~/.bash_history
+set -o history             # enable history
+

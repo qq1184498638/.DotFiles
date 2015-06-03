@@ -1,5 +1,5 @@
-#!/usr/bin/env bash
+#!/usr/bin/env bash -i
 
-HISTFILE=~/.bash_history   # Or wherever you bash history file lives
+HISTFILE=~/.bash_history
 set -o history             # enable history
-history | tail -n 3
+history | tail -n 7 | head -n 4
