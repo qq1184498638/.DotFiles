@@ -99,6 +99,8 @@ alias -s sass='vim'
 alias -s css='vim'
 alias -s scss='vim'
 alias -s tex='vim'
+alias -s yml='vim'
+alias -s yaml='vim'
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -139,6 +141,8 @@ fi
 #alias ls='ls $LS_OPTIONS -GFAh'
 alias ls='ls -GFh'
 
+alias sss="ssh"
+
 ###########################
 # git hacking
 alias gi="git add --interactive"
@@ -165,7 +169,9 @@ function gp {
 # typo
 alias pg="gp"
 alias gl="git log"
+alias glp="git log --pretty=oneline"
 alias gs="git status --untracked-files=no"
+alias gsu="git status"
 function ga {
     git add "$1" && gs;
 }
@@ -310,7 +316,7 @@ alias off="deactivate"
 ############################
 # better grep
 function nrp { grep -nrw . -e $@ --color; }
-function grp { grep -nrI --include="*.py" --exclude="*vendor*" --exclude="*tests*" -E "$1" . --color; }
+function grp { grep -nrI --include="*.py" --include="*.js" --include="*.jsx" --include="*.scss" --include="*.sass" --exclude="*public*" --exclude="*vendor*" --exclude="*tests*" --exclude="*node_modules*" -E $@ . --color; }
 function grpe { grep -nrI --include="$2" --exclude="*vendor*" --exclude="*tests*" -E "$1" . --color; }
 #function r() { grep "$1" ${@:2} -R . }
 
@@ -408,5 +414,5 @@ chpwd_functions=(${chpwd_functions[@]} "my_special_chpwd_function")
 alias mk="mkdir -pv"
 
 HISTFILE=~/.bash_history
-set -o history             # enable history
+#set -o history             # enable history
 
