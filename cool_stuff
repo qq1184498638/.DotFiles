@@ -1,0 +1,13 @@
+
+//horizontal line in jquery
+        var hl = $("<div>");
+        hl.css({
+            height: '3px',
+            width: '100%',
+            position: 'absolute',
+            zIndex: '300',
+            color: 'red',
+            backgroundColor: 'red',
+            top: topp
+         });
+        $('.content').append(hl);
