@@ -192,6 +192,9 @@ function grh {
     grh_ "$@" && gs;
 }
 
+alias glm="git diff --name-only HEAD HEAD~1"
+alias grv="git remote -v"
+
 # curiosities
 # gsh shows the number of commits for the current repos for all developers
 alias gsh="git shortlog | grep -E '^[ ]+\w+' | wc -l"
@@ -287,6 +290,7 @@ setopt CORRECT
 
 alias cb="cd /Users/tomasz/projects/consumer-barometer"
 alias ra="/Users/tomasz/projects/rare"
+alias ffr="cd ~/projects/nodejs/first-react-fluxible"
 
 # -------------------------------------------------------------------
 # Python virtualenv
