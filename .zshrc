@@ -30,7 +30,7 @@ ZSH_THEME=pygmalion
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
- export UPDATE_ZSH_DAYS=1
+export UPDATE_ZSH_DAYS=50
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -166,6 +166,13 @@ alias gch="gck"
 function gp {
     git push origin $(git rev-parse --abbrev-ref HEAD);
 }
+function gpf {
+    git push -f origin $(git rev-parse --abbrev-ref HEAD);
+}
+function gdd {
+    git diff HEAD~1 "$@"
+}
+
 # typo
 alias pg="gp"
 alias gl="git log"
@@ -288,9 +295,22 @@ setopt CORRECT
 ######################
 # current project specific
 
+# Consumer Barometer
 alias cb="cd /Users/tomasz/projects/consumer-barometer"
-alias ra="/Users/tomasz/projects/rare"
+
+# First-react-fluxible
 alias ffr="cd ~/projects/nodejs/first-react-fluxible"
+
+# RARE
+alias ra="/Users/tomasz/projects/rare"
+alias rec="npm run js && npm run css && npm run cdn && nodemon"
+alias nm="npm run cdn && nodemon"
+alias njs="npm run js"
+alias ncs="npm run css"
+alias nim="gulp images"
+
+export LOCAL_DEV=True
+alias sds="python manage.py runserver 0.0.0.0:8080"
 
 # -------------------------------------------------------------------
 # Python virtualenv
@@ -320,7 +340,7 @@ alias off="deactivate"
 ############################
 # better grep
 function nrp { grep -nrw . -e $@ --color; }
-function grp { grep -nrI --include="*.py" --include="*.js" --include="*.jsx" --include="*.scss" --include="*.sass" --exclude="*public*" --exclude="*vendor*" --exclude="*tests*" --exclude="*node_modules*" -E $@ . --color; }
+function grp { grep -nrI --include="*.py" --include="*.json" --include="*.js" --include="*.jsx" --include="*.scss" --include="*.sass" --exclude="*public*" --exclude="*vendor*" --exclude="*tests*" --exclude="*node_modules*" -E $@ . --color; }
 function grpe { grep -nrI --include="$2" --exclude="*vendor*" --exclude="*tests*" -E "$1" . --color; }
 #function r() { grep "$1" ${@:2} -R . }
 
@@ -420,3 +440,10 @@ alias mk="mkdir -pv"
 HISTFILE=~/.bash_history
 #set -o history             # enable history
 
+#macports
+export PATH=/opt/local/bin:/opt/local/sbin:$PATH
+export MANPATH=/opt/local/share/man:$MANPATH
+export DISPLAY=:0.0
+
+#postgresql
+PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
