@@ -69,6 +69,9 @@ plugins=(colored-man colorize github vagrant virtualenv pip python brew osx zsh-
 export PATH="/Users/tomasz/google-cloud-sdk/bin:/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/MacGPG2/bin:/usr/texbin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
+CLOUDSDK_PYTHON=/usr/bin/python
+export CLOUDSDK_PYTHON
+
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
@@ -199,6 +202,7 @@ function grh {
     grh_ "$@" && gs;
 }
 
+# last modified
 alias glm="git diff --name-only HEAD HEAD~1"
 alias grv="git remote -v"
 
@@ -219,6 +223,12 @@ alias ..='cd ..'
 alias ...='cd ../../'
 # create parent dir on demand
 alias mkdir='mkdir -pv'
+
+function mkd () {
+    mkdir $1
+    cd $1
+}
+
 alias diff='colordiff'
 # Make mount command output pretty and human readable format
 alias mount='mount |column -t'
@@ -298,6 +308,8 @@ setopt CORRECT
 # Consumer Barometer
 alias cb="cd /Users/tomasz/projects/consumer-barometer"
 
+alias kin="cd /Users/tomasz/projects/kindeo/kindeo"
+
 # First-react-fluxible
 alias ffr="cd ~/projects/nodejs/first-react-fluxible"
 
@@ -321,8 +333,6 @@ alias off="deactivate"
 
 #################
 # sourcing section
-# The next line updates PATH for the Google Cloud SDK.
-#source '/Users/tomasz/google-cloud-sdk/path.bash.inc'
 
 # The next line enables bash completion for gcloud.
 #source '/Users/tomasz/google-cloud-sdk/completion.bash.inc'
@@ -421,6 +431,8 @@ HISTFILE=~/.zsh_history
 #preexec() { ODIR="$(pwd)" }
 #precmd() { [[ "$(pwd)" != $ODIR ]] && ls -GFh; }
 
+precmd() { print "" }
+
 #function chpwd() {
     #ls;
 #}
@@ -447,3 +459,24 @@ export DISPLAY=:0.0
 
 #postgresql
 PATH="/Applications/Postgres.app/Contents/Versions/9.4/bin:$PATH"
+
+# for iojs??
+
+#LDFLAGS=  -L/usr/local/opt/iojs/lib
+#CPPFLAGS: -I/usr/local/opt/iojs/include
+
+export NVM_DIR="/Users/tomasz/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+# for boot2docker
+
+export DOCKER_HOST=tcp://$(boot2docker ip 2>/dev/null):2375
+
+# hacking vagrant
+alias vus="vagrant up && vagrant ssh"
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/tomasz/google-cloud-sdk/path.zsh.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/Users/tomasz/google-cloud-sdk/completion.zsh.inc'
