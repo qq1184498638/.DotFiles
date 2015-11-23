@@ -312,6 +312,7 @@ alias kin="cd /Users/tomasz/projects/kindeo/kindeo"
 
 # 52.18.156.102
 alias ssh-hive-st="ssh ubuntu@52.18.156.102 -i ~/.ssh/myamazon.pem"
+alias ssh-hive="ssh ubuntu@52.16.197.206 -i ~/.ssh/myamazon.pem"
 
 # First-react-fluxible
 alias ffr="cd ~/projects/nodejs/first-react-fluxible"
