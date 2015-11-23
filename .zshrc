@@ -310,6 +310,9 @@ alias cb="cd /Users/tomasz/projects/consumer-barometer"
 
 alias kin="cd /Users/tomasz/projects/kindeo/kindeo"
 
+# 52.18.156.102
+alias ssh-hive-st="ssh ubuntu@52.18.156.102 -i ~/.ssh/myamazon.pem"
+
 # First-react-fluxible
 alias ffr="cd ~/projects/nodejs/first-react-fluxible"
 
