@@ -310,9 +310,12 @@ alias cb="cd /Users/tomasz/projects/consumer-barometer"
 
 alias kin="cd /Users/tomasz/projects/kindeo/kindeo"
 
+alias prv="cd /Users/tomasz/private-projects/"
+
 # 52.18.156.102
 alias ssh-hive-st="ssh ubuntu@52.18.156.102 -i ~/.ssh/myamazon.pem"
 alias ssh-hive="ssh ubuntu@52.16.197.206 -i ~/.ssh/myamazon.pem"
+
 
 # First-react-fluxible
 alias ffr="cd ~/projects/nodejs/first-react-fluxible"
@@ -407,7 +410,7 @@ function extract {
 fi
 }
 
-PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/tomasz/eb/macosx/python2.7/:$PATH"
+PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/tomasz/eb/macosx/python2.7/:/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/:$PATH"
 export USER_NAME="Tomasz"
 ##################################################
 
