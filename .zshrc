@@ -316,6 +316,8 @@ alias prv="cd /Users/tomasz/private-projects/"
 alias ssh-hive-st="ssh ubuntu@52.18.156.102 -i ~/.ssh/myamazon.pem"
 alias ssh-hive="ssh ubuntu@52.16.197.206 -i ~/.ssh/myamazon.pem"
 
+alias ssh-kindeo-testing="ssh ubuntu@52.30.225.253 -i ~/.ssh/keyTesting.pem"
+
 
 # First-react-fluxible
 alias ffr="cd ~/projects/nodejs/first-react-fluxible"
