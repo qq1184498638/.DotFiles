@@ -161,9 +161,9 @@ function gb {
         git branch "$@"
     fi
 }
-function gck {
-    git checkout "$@"
-}
+
+alias gck="git checkout"
+
 # typo
 alias gch="gck"
 function gp {
@@ -412,7 +412,7 @@ function extract {
 fi
 }
 
-PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/tomasz/eb/macosx/python2.7/:/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/:$PATH"
+PATH="/usr/local/share/python:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Users/tomasz/eb/macosx/python2.7/:/System/Library/Frameworks/JavaScriptCore.framework/Versions/Current/Resources/:/Library/TeX/texbin:$PATH"
 export USER_NAME="Tomasz"
 ##################################################
 
