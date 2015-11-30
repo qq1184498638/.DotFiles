@@ -310,6 +310,8 @@ alias cb="cd /Users/tomasz/projects/consumer-barometer"
 
 alias kin="cd /Users/tomasz/projects/kindeo/kindeo"
 
+alias hive="cd /Users/tomasz/projects/hive-site"
+
 alias prv="cd /Users/tomasz/private-projects/"
 
 # 52.18.156.102
