@@ -313,12 +313,17 @@ alias kin="cd /Users/tomasz/projects/kindeo/kindeo"
 alias hive="cd /Users/tomasz/projects/hive-site"
 
 alias prv="cd /Users/tomasz/private-projects/"
+alias proj="cd /Users/tomasz/projects/"
 
 # 52.18.156.102
 alias ssh-hive-st="ssh ubuntu@52.18.156.102 -i ~/.ssh/myamazon.pem"
+alias ssh-hive-st-2="ssh ubuntu@52.48.4.112 -i ~/.ssh/myamazon.pem"
 alias ssh-hive="ssh ubuntu@52.16.197.206 -i ~/.ssh/myamazon.pem"
+alias ssh-hive-production="ssh ubuntu@52.31.148.233 -i ~/.ssh/myamazon.pem"
 
-alias ssh-kindeo-testing="ssh ubuntu@52.30.225.253 -i ~/.ssh/keyTesting.pem"
+# alias ssh-kindeo-testing="ssh ubuntu@52.30.225.253 -i ~/.ssh/keyTesting.pem"
+alias ssh-kindeo-testing="ssh ubuntu@52.17.123.192 -i ~/.ssh/keyTesting.pem"
+alias ssh-kindeo="ssh ubuntu@52.19.169.147 -i ~/.ssh/kindeo.pem"
 
 
 # First-react-fluxible
