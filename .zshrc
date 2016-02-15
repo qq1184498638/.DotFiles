@@ -149,7 +149,7 @@ alias sss="ssh"
 ###########################
 # git hacking
 alias gi="git add --interactive"
-alias gsh="git show"
+alias gsw="git show"
 alias gc="git commit"
 #alias gb="git branch"
 function gb {
